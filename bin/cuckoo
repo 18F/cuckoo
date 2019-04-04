@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require_relative '../lib/cuckoo'
+
+BaseName = File.basename($0)
+
+def puts_err(message)
+  STDERR.puts(BaseName + ': ' + message)
+end
+
+def parse_args
+  _options = {}
+  optparse = OptionParser.new do |opts|
+    opts.banner = <<-EOM
+usage: #{BaseName} [OPTION]...
+
+Cuckoo CLI placeholder
+
+
+Options:
+    EOM
+
+    opts.on('-h', '--help', 'Display this message', ' ') do
+      STDERR.puts opts, ''
+      exit 0
+    end
+    opts.on('-V', '--version', 'Print version number', ' ') do
+      puts 'cuckoo ' + Cuckoo::VERSION
+      exit 0
+    end
+  end
+
+  begin
+    optparse.parse!
+  rescue OptionParser::InvalidOption => err
+    puts_err(err.message)
+    exit 1
+  end
+
+  raise NotImplementedError
+end
+
+parse_args
