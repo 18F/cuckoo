@@ -1,3 +1,122 @@
----
-inherit_from:
-- .rubocop-disables.yml
+AllCops:
+  TargetRubyVersion: 2.3
+
+# These metrics are all mostly useless
+Metrics/AbcSize:
+  Max: 50
+Metrics/BlockNesting:
+  Max: 4
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Max: 15
+Metrics/MethodLength:
+  Max: 45
+  Exclude:
+    - bin/cuckoo
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Naming/ConstantName:
+  Enabled: false
+
+# Configuration parameters: Exclude.
+#
+# We could re-enable this if it understood that the top level module should
+# *not* be documented in files that are not the first to define it.
+#
+Style/Documentation:
+  Enabled: false
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
+# ********************************
+# Disagree with these style points
+# ********************************
+
+# Zero-indented heredocs are fine
+Layout/IndentHeredoc:
+  Enabled: false
+# EOM is fine
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
+Layout/DotPosition:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Layout/EmptyLines:
+  Enabled: false
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: false
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+
+# Don't favor modifier style ever.
+Style/IfUnlessModifier:
+  Enabled: false
+Style/WhileUntilModifier:
+  Enabled: false
+
+Style/InfiniteLoop:
+  Enabled: false
+Style/RaiseArgs:
+  EnforcedStyle: compact
+Style/RedundantReturn:
+  Enabled: false
+Style/Alias:
+  Enabled: false
+Style/SignalException:
+  EnforcedStyle: only_raise
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+# Arguable
+# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+# Arguable
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Don't favor %w for arrays of words.
+Style/WordArray:
+  Enabled: false
+
+# Definitely do NOT assign variables within a conditional. Christ.
+Style/ConditionalAssignment:
+  Enabled: false
+
+# ********************************
+
+# Configuration parameters: AllowedVariables.
+Style/GlobalVars:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+# I disagree with this cop for the specific case of
+#   if !foo.empty?
+# because I think it's a shame that ruby has no nonempty? predicate, and it's
+# clearer if the double negative is all on the RHS.
+Style/NegatedIf:
+  Exclude: []
+
+Style/SpecialGlobalVars:
+  Enabled: false

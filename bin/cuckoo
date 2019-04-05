@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'optparse'
 require_relative '../lib/cuckoo'
@@ -6,7 +7,7 @@ require_relative '../lib/cuckoo'
 BaseName = File.basename($0)
 
 def puts_err(message)
-  STDERR.puts(BaseName + ': ' + message)
+  warn(BaseName + ': ' + message)
 end
 
 def parse_args
@@ -22,7 +23,7 @@ Options:
     EOM
 
     opts.on('-h', '--help', 'Display this message', ' ') do
-      STDERR.puts opts, ''
+      warn(opts)
       exit 0
     end
     opts.on('-V', '--version', 'Print version number', ' ') do

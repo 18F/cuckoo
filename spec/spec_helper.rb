@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/cuckoo'
 
 # Given that it is always loaded, you are encouraged to keep this file as
