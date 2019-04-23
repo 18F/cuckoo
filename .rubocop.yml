@@ -16,6 +16,8 @@ Metrics/MethodLength:
     - bin/cuckoo
 Metrics/ModuleLength:
   Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
 Metrics/PerceivedComplexity:
   Max: 15
 
